@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>practice</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="bestseller.css" />
+  </head>
+  <body>
+  
+    <div class="js-container"></div>
+    <script src="https://unpkg.com/supersimpledev@8.6.4/external-library.js"></script>
+
+    <script src="https://unpkg.com/supersimpledev/react.js"></script>
+    <script src="https://unpkg.com/supersimpledev/react-dom.js"></script>
+    <script src="https://unpkg.com/react-router-dom/umd/react-router-dom.min.js"></script>
+
+    <script src="https://unpkg.com/supersimpledev/babel.js"></script>
+    
+    <script type="text/babel">
+        
+function Header(){
+  return(
+    <div className="vertical-containerheader">
+      <div>Market.in</div>
+
+      <div>
+        <img src="path/to/image.jpg" alt="Logo" />
+        <p>delivering the best products</p>
+      </div>
+
+      <select className="se">
+        <option>All</option>
+        <option>Electronics</option>
+        <option>Clothing</option>
+        <option>Home</option>
+      </select>
+
+      <form>
+        <input type="text" placeholder="Search products..." />
+        <button type="submit">Search</button>
+      </form>
+
+      <select className="se">
+        <option>India</option>
+        <option>USA</option>
+      </select>
+
+      <button className="se">Login</button>
+      <button className="se">Returns & Orders</button>
+
+      <img src="path/to/cart-icon.jpg" alt="Cart" />
+    </div>
+  );
+}
+
+/* ================= OPTION ================= */
+function Option() {
+  const [isOpen, setIsOpen] = React.useState(false);
+
+  const links = [
+    { name: "MX Player", path: "/mx-player" },
+    { name: "Mobiles", path: "/mobiles" },
+    { name: "Fashion", path: "/fashion" },
+    { name: "Books", path: "/books" },
+    { name: "Home", path: "/home" }
+  ];
+
+  return (
+    <>
+      <div className="vertical-containerheader2">
+
+        <button onClick={() => setIsOpen(true)}>All</button>
+
+        {isOpen && (
+          <div className="overlay" onClick={() => setIsOpen(false)}> </div>
+        )}
+
+        <div className={`side-menu ${isOpen ? "open" : ""}`}>
+         <div className={`top ${isOpen ? "open" : ""}`}> <button onClick={() => setIsOpen(false)}>X</button> 
+           <h2>hellow {name}</h2> </div>
+            <div className= "side-menu-content">
+              <h3>trending</h3>
+              <a href="/bestseller/bestseller.html"><div>best sellers</div></a>
+              <a href="/fashion/fashion.html"><div>new releases</div></a>
+              <a href="/books/books.html"><div>mover and shakers</div></a>
+              <h3>digital content and devices</h3>
+              <a href="/mx-player"><div>prime video</div></a>
+              <a href="/mx-player"><div>amazon music</div></a>
+              <a href="/mx-player"><div>app store</div></a>
+              <a href="/mx-player"><div>prime reading</div></a>
+              <h3>shop by category</h3>
+              <a href="/mobiles"><div>mobiles</div></a>
+              <a href="/fashion"><div>fashion</div></a>
+              <a href="/books"><div>books</div></a>
+              <a href="/home"><div>home</div></a>
+              <a href="/home"><div>electronics</div></a>
+              <h3>programs and features</h3>
+              <a href="/mx-player"><div>gift cards</div></a>
+              <a href="/mx-player"><div>amazon pay</div></a>
+              <a href="/mx-player"><div>amazon pay icici credit card</div></a>
+              <a href="/mx-player"><div>sell on market.in</div></a>
+              <h3>help and settings</h3>
+              <a href="/account/account.html"><div>your account</div></a>
+              <a href="/custoreserves/custoreserves.html"><div>customer service</div></a>
+              <a href="/signin/signin.html"><div>sign in</div></a>
+              <Footer/>
+            
+            
+            
+          
+            
+           </div>
+         </div>  
+          
+        
+      
+
+      {/* Top Menu */}
+      <div>
+        {links.map(link => (
+          <button
+            key={link.path}
+            onClick={() => window.location.href = link.path} // ✅ changed
+          >
+            {link.name}
+          </button>
+        ))}
+      </div>
+      </div>
+    </>
+  );
+}
+/* ================= INFO ================= */
+function Info(){
+  return(
+    <>
+      <div style={{ backgroundColor: "black" }}>
+        <button>Back to top</button>
+      </div>
+
+      <div className="info">
+        <div className="link">
+          <h2>Get to know us</h2>
+          <a href="#">About</a>
+        </div>
+
+        <div className="link">
+          <h2>Connect</h2>
+          <a href="#">Instagram</a>
+        </div>
+
+        <Link />
+      </div>
+    </>
+  );
+}
+
+function Link(){
+  return(
+    <div className="link">
+      <a href="#">Market Pay</a>
+      <a href="#">Audible</a>
+      <a href="#">Gift Cards</a>
+    </div>
+  );
+}
+
+/* ================= FOOTER ================= */
+function Footer(){
+  return(
+    <div id="footer">
+      © 2026 Market.in
+    </div>
+  );
+}
+
+/* ================= APP ================= */
+const app = (
+  <>
+    <Header/>
+    <Option/>
+    
+
+    <div className="info-footer">
+      <Info/>
+      
+    </div>
+    <Footer/>
+  </>
+);
+
+ReactDOM.createRoot(document.querySelector('.js-container')).render(app);
+      const container = document.querySelector('.js-container');
+      ReactDOM.createRoot(container).render(app);
+    </script>
+  </body>
+</html>

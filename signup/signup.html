@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Signup Page</title>
+
+    <meta charset="UTF-8" />
+
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
+
+    <link rel="stylesheet" href="signup.css" />
+  </head>
+
+  <body>
+
+    <div class="js-container"></div>
+
+    <!-- React -->
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+
+    <!-- Babel -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <script type="text/babel">
+
+      /* ================= HEADER ================= */
+
+      function Header() {
+
+        return (
+          <div className="vertical-containerheader">
+
+            <div className="logo">
+              <h2>Market.in</h2>
+              <p>Delivering the best products</p>
+            </div>
+
+            <select className="se">
+              <option>All</option>
+              <option>Electronics</option>
+              <option>Clothing</option>
+              <option>Home</option>
+            </select>
+
+            <form className="search-form">
+              <input
+                type="text"
+                placeholder="Search products..."
+              />
+
+              <button type="submit">
+                Search
+              </button>
+            </form>
+
+            <select className="se">
+              <option>India</option>
+              <option>USA</option>
+            </select>
+
+            <button className="se">
+              Login
+            </button>
+
+            <button className="se">
+              Returns & Orders
+            </button>
+
+          </div>
+        );
+      }
+
+      /* ================= OPTION ================= */
+
+      function Option() {
+
+        const [isOpen, setIsOpen] = React.useState(false);
+
+        const links = [
+          { name: "MX Player", path: "#" },
+          { name: "Mobiles", path: "#" },
+          { name: "Fashion", path: "#" },
+          { name: "Books", path: "#" },
+          { name: "Home", path: "#" }
+        ];
+
+        return (
+          <>
+            <div className="vertical-containerheader2">
+
+              <button
+                className="menu-btn"
+                onClick={() => setIsOpen(true)}
+              >
+                All
+              </button>
+
+              <div className="top-links">
+
+                {links.map((link) => (
+                  <button
+                    key={link.name}
+                    onClick={() => window.location.href = link.path}
+                  >
+                    {link.name}
+                  </button>
+                ))}
+
+              </div>
+
+            </div>
+
+            {/* Overlay */}
+            {isOpen && (
+              <div
+                className="overlay"
+                onClick={() => setIsOpen(false)}
+              ></div>
+            )}
+
+            {/* Sidebar */}
+            <div className={`side-menu ${isOpen ? "open" : ""}`}>
+
+              <div className="top">
+
+                <button
+                  onClick={() => setIsOpen(false)}
+                >
+                  X
+                </button>
+
+                <h2>Hello User</h2>
+
+              </div>
+
+              <div className="side-menu-content">
+
+                <h3>Trending</h3>
+
+                <a href="#">Best Sellers</a>
+                <a href="#">New Releases</a>
+                <a href="#">Movers and Shakers</a>
+
+                <h3>Digital Content</h3>
+
+                <a href="#">Prime Video</a>
+                <a href="#">Amazon Music</a>
+                <a href="#">App Store</a>
+
+                <h3>Shop By Category</h3>
+
+                <a href="#">Mobiles</a>
+                <a href="#">Fashion</a>
+                <a href="#">Books</a>
+                <a href="#">Home</a>
+
+                <h3>Help & Settings</h3>
+
+                <a href="#">Your Account</a>
+                <a href="#">Customer Service</a>
+                <a href="#">Sign In</a>
+
+              </div>
+
+            </div>
+          </>
+        );
+      }
+
+      /* ================= SIGNUP CARD ================= */
+
+      function Card() {
+
+        const [formData, setFormData] = React.useState({
+          name: "",
+          email: "",
+          password: "",
+          mobile: ""
+        });
+
+        function handleChange(event) {
+
+          const { name, value } = event.target;
+
+          setFormData({
+            ...formData,
+            [name]: value
+          });
+        }
+
+        function handleSubmit(event) {
+
+          event.preventDefault();
+
+          alert(
+            "Signup Successful!\n\n" +
+            "Name: " + formData.name +
+            "\nEmail: " + formData.email
+          );
+        }
+
+        return (
+          <div className="signup-container">
+
+            <form
+              className="signup-card"
+              onSubmit={handleSubmit}
+            >
+
+              <h1>Create Account</h1>
+
+              <input
+                type="text"
+                name="name"
+                placeholder="Enter Name"
+                value={formData.name}
+                onChange={handleChange}
+                required
+              />
+
+              <input
+                type="email"
+                name="email"
+                placeholder="Enter Email"
+                value={formData.email}
+                onChange={handleChange}
+                required
+              />
+
+              <input
+                type="password"
+                name="password"
+                placeholder="Enter Password"
+                value={formData.password}
+                onChange={handleChange}
+                required
+              />
+
+              <input
+                type="number"
+                name="mobile"
+                placeholder="Enter Mobile Number"
+                value={formData.mobile}
+                onChange={handleChange}
+                required
+              />
+
+              <button type="submit">
+                Sign Up
+              </button>
+
+            </form>
+
+          </div>
+        );
+      }
+
+      /* ================= INFO ================= */
+
+      function Info() {
+
+        return (
+          <>
+            <div className="back-top">
+              <button>
+                Back to top
+              </button>
+            </div>
+
+            <div className="info">
+
+              <div className="link">
+
+                <h2>Get to know us</h2>
+
+                <a href="#">About</a>
+                <a href="#">Careers</a>
+
+              </div>
+
+              <div className="link">
+
+                <h2>Connect</h2>
+
+                <a href="#">Instagram</a>
+                <a href="#">Facebook</a>
+
+              </div>
+
+              <Link />
+
+            </div>
+          </>
+        );
+      }
+
+      /* ================= LINKS ================= */
+
+      function Link() {
+
+        return (
+          <div className="link">
+
+            <h2>Services</h2>
+
+            <a href="#">Market Pay</a>
+            <a href="#">Audible</a>
+            <a href="#">Gift Cards</a>
+
+          </div>
+        );
+      }
+
+      /* ================= FOOTER ================= */
+
+      function Footer() {
+
+        return (
+          <div id="footer">
+            © 2026 Market.in
+          </div>
+        );
+      }
+
+      /* ================= APP ================= */
+
+      function App() {
+
+        return (
+          <>
+            <Header />
+
+            <Option />
+
+            <Card />
+
+            <div className="info-footer">
+              <Info />
+            </div>
+
+            <Footer />
+          </>
+        );
+      }
+
+      /* ================= RENDER ================= */
+
+      const root = ReactDOM.createRoot(
+        document.querySelector(".js-container")
+      );
+
+      root.render(<App />);
+
+    </script>
+
+  </body>
+</html>

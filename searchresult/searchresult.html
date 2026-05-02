@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Market.in Search Results</title>
+
+  <link rel="stylesheet" href="searchresult.css" />
+
+</head>
+
+<body>
+
+  <div class="js-container"></div>
+
+  <!-- React -->
+  <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+
+  <!-- React DOM -->
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+
+  <!-- Babel -->
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+  <script type="text/babel">
+
+    /* =========================
+       LARGE PRODUCT DATA
+    ========================== */
+
+    const products = Array.from({ length: 48 }, (_, index) => ({
+
+      id: index + 1,
+
+      image:
+        "https://via.placeholder.com/300x250",
+
+      brand:
+        "Market Brand",
+
+      name:
+        `Laptop Model ${index + 1}`,
+
+      price:
+        `$${999 + index}`,
+
+      rating:
+        (4 + Math.random()).toFixed(1),
+
+      description:
+        "High-performance laptop with premium build quality and powerful features."
+
+    }));
+
+
+    /* =========================
+       HEADER
+    ========================== */
+
+    function Header() {
+
+      return (
+
+        <div className="header">
+
+          <div className="logo">
+            Market.in
+          </div>
+
+          <div className="search-bar">
+
+            <select>
+              <option>All</option>
+              <option>Electronics</option>
+              <option>Fashion</option>
+              <option>Books</option>
+              <option>Home</option>
+            </select>
+
+            <input
+              type="text"
+              placeholder="Search products..."
+            />
+
+            <button>
+              Search
+            </button>
+
+          </div>
+
+          <div className="header-buttons">
+
+            <button>Login</button>
+
+            <button>Orders</button>
+
+            <button>Cart</button>
+
+          </div>
+
+        </div>
+
+      );
+    }
+
+
+    /* =========================
+       SIDEBAR
+    ========================== */
+
+    function Sidebar() {
+
+      const [isOpen, setIsOpen] =
+        React.useState(false);
+
+      return (
+
+        <>
+
+          <div className="menu-bar">
+
+            <button
+              className="menu-button"
+              onClick={() => setIsOpen(true)}
+            >
+              ☰ All
+            </button>
+
+            <button>Mobiles</button>
+            <button>Fashion</button>
+            <button>Electronics</button>
+            <button>Books</button>
+            <button>Home</button>
+
+          </div>
+
+          {isOpen && (
+
+            <div
+              className="overlay"
+              onClick={() => setIsOpen(false)}
+            ></div>
+
+          )}
+
+          <div
+            className={`sidebar ${isOpen ? "open" : ""}`}
+          >
+
+            <div className="sidebar-top">
+
+              <h2>Hello User</h2>
+
+              <button
+                onClick={() => setIsOpen(false)}
+              >
+                X
+              </button>
+
+            </div>
+
+            <div className="sidebar-content">
+
+              <h3>Trending</h3>
+
+              <a href="#">Best Sellers</a>
+
+              <a href="#">New Releases</a>
+
+              <a href="#">Movers & Shakers</a>
+
+              <h3>Shop By Category</h3>
+
+              <a href="#">Mobiles</a>
+
+              <a href="#">Fashion</a>
+
+              <a href="#">Books</a>
+
+              <a href="#">Electronics</a>
+
+              <a href="#">Home</a>
+
+            </div>
+
+          </div>
+
+        </>
+
+      );
+    }
+
+
+    /* =========================
+       SEARCH INFO
+    ========================== */
+
+    function SearchInfo() {
+
+      return (
+
+        <div className="search-info">
+
+          <h2>
+            1-48 of over 10,000 results for "Laptop"
+          </h2>
+
+          <p>
+            Compare products, prices, ratings and reviews before purchasing.
+          </p>
+
+        </div>
+
+      );
+    }
+
+
+    /* =========================
+       PRODUCT CARD
+    ========================== */
+
+    function ProductCard({
+
+      image,
+      brand,
+      name,
+      price,
+      rating,
+      description
+
+    }) {
+
+      return (
+
+        <div className="product-card">
+
+          <img
+            src={image}
+            alt={name}
+          />
+
+          <div className="product-details">
+
+            <h4>
+              {brand}
+            </h4>
+
+            <h3>
+              {name}
+            </h3>
+
+            <div className="rating">
+              ⭐ {rating}
+            </div>
+
+            <div className="price">
+              {price}
+            </div>
+
+            <p>
+              {description}
+            </p>
+
+            <button>
+              Add to Cart
+            </button>
+
+          </div>
+
+        </div>
+
+      );
+    }
+
+
+    /* =========================
+       PRODUCT SECTION
+    ========================== */
+
+    function ProductSection({
+
+      title,
+      items
+
+    }) {
+
+      return (
+
+        <div className="product-section">
+
+          <h2>
+            {title}
+          </h2>
+
+          <div className="product-list">
+
+            {items.map(product => (
+
+              <ProductCard
+
+                key={product.id}
+
+                image={product.image}
+
+                brand={product.brand}
+
+                name={product.name}
+
+                price={product.price}
+
+                rating={product.rating}
+
+                description={product.description}
+
+              />
+
+            ))}
+
+          </div>
+
+        </div>
+
+      );
+    }
+
+
+    /* =========================
+       INFO SECTION
+    ========================== */
+
+    function InfoSection() {
+
+      return (
+
+        <div className="info-section">
+
+          <div>
+
+            <h3>
+              Get to Know Us
+            </h3>
+
+            <a href="#">
+              About Us
+            </a>
+
+            <a href="#">
+              Careers
+            </a>
+
+            <a href="#">
+              Press Releases
+            </a>
+
+          </div>
+
+          <div>
+
+            <h3>
+              Connect With Us
+            </h3>
+
+            <a href="#">
+              Instagram
+            </a>
+
+            <a href="#">
+              Facebook
+            </a>
+
+            <a href="#">
+              Twitter
+            </a>
+
+          </div>
+
+          <div>
+
+            <h3>
+              Make Money
+            </h3>
+
+            <a href="#">
+              Sell on Market.in
+            </a>
+
+            <a href="#">
+              Affiliate Program
+            </a>
+
+            <a href="#">
+              Advertise Products
+            </a>
+
+          </div>
+
+        </div>
+
+      );
+    }
+
+
+    /* =========================
+       FOOTER
+    ========================== */
+
+    function Footer() {
+
+      return (
+
+        <div className="footer">
+
+          © 2026 Market.in
+
+        </div>
+
+      );
+    }
+
+
+    /* =========================
+       APP
+    ========================== */
+
+    function App() {
+
+      return (
+
+        <>
+
+          <Header />
+
+          <Sidebar />
+
+          <SearchInfo />
+
+          <ProductSection
+            title="Best Sellers"
+            items={products}
+          />
+
+          <ProductSection
+            title="Recommended Products"
+            items={products}
+          />
+
+          <InfoSection />
+
+          <Footer />
+
+        </>
+
+      );
+    }
+
+
+    ReactDOM
+      .createRoot(
+        document.querySelector(".js-container")
+      )
+      .render(<App />);
+
+  </script>
+
+</body>
+
+</html>
