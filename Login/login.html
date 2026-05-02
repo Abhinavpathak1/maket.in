@@ -104,17 +104,7 @@ function Option() {
               <a href="/account/account.html"><div>your account</div></a>
               <a href="/custoreserves/custoreserves.html"><div>customer service</div></a>
               <a href= "/Login/login.html"><div>log in</div></a>
-              <Footer/>
-            
-            
-          
-            
-          
-         
-            
-            
-          
-            
+              <Footer/> 
            </div>
          </div>  
           
@@ -141,11 +131,11 @@ function Card(){
     <div className="card">
       <h2>Markit.in</h2>
       <p>Sign in to your account</p>
-      <input type="text" placeholder="email or mobile number" />
+      <input type="text" placeholder="email or mobile number"  size="50"/>
       <button>Continue</button>
       <p> by continuing, you agree to Market.in's <a href="#">Conditions of Use</a> and <a href="#">Privacy Notice</a>.</p>
       <hr/>
-      <h5>buying for work?</h5>
+      <h4>buying for work?</h4>
       <a href="#">Create a free business account</a>
     </div>
   );
@@ -199,7 +189,9 @@ const app = (
   <>
     <Header/>
     <Option/>
+    <div className="card1">
     <Card/>
+    </div>
 
     
 
