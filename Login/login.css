@@ -5,7 +5,7 @@
     background-color: #131921;
     color:aliceblue;
     height: 100px;
-    overflow-x: auto;
+
 
     
 }
@@ -248,7 +248,7 @@ hr{
 .vertical-containerheader 
 button{
     background-color: yellow;
-    border-radius: 25px;
+    border-radius: 10px;
     color: rgb(8, 8, 8);
     font-size: 16px;
     cursor: pointer;
