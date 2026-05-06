@@ -60,401 +60,125 @@
        HEADER
     ========================== */
 
-    function Header() {
+    function Header({ onSearch }) {
 
-      return (
+  const [query, setQuery] = React.useState("");
 
-        <div className="header">
+  function handleSubmit(e) {
+    e.preventDefault();
+    onSearch(query);
+  }
 
-          <div className="logo">
-            Market.in
-          </div>
+  return (
+    <div className="header">
 
-          <div className="search-bar">
+      <h2>Market.in</h2>
 
-            <select>
-              <option>All</option>
-              <option>Electronics</option>
-              <option>Fashion</option>
-              <option>Books</option>
-              <option>Home</option>
-            </select>
+      <form className="search-bar" onSubmit={handleSubmit}>
+        <input
+          type="text"
+          placeholder="Search products..."
+          value={query}
+          onChange={(e) => setQuery(e.target.value)}
+        />
+        <button type="submit">Search</button>
+      </form>
 
-            <input
-              type="text"
-              placeholder="Search products..."
-            />
+      <div>
+        <button>Login</button>
+        <button>Orders</button>
+        <button>Cart</button>
+      </div>
 
-            <button>
-              Search
-            </button>
+    </div>
+  );
+}
 
-          </div>
+/* ================= SIDEBAR ================= */
+function Sidebar() {
 
-          <div className="header-buttons">
+  const [isOpen, setIsOpen] = React.useState(false);
 
-            <button>Login</button>
+  return (
+    <>
+      <button onClick={() => setIsOpen(true)}>☰ Menu</button>
 
-            <button>Orders</button>
+      {isOpen && (
+        <div className="overlay" onClick={() => setIsOpen(false)}></div>
+      )}
 
-            <button>Cart</button>
+      <div className={`sidebar ${isOpen ? "open" : ""}`}>
+        <h2>Hello User</h2>
+        <button onClick={() => setIsOpen(false)}>X</button>
 
-          </div>
+        <h3>Categories</h3>
+        <a href="#">Mobiles</a><br/>
+        <a href="#">Fashion</a><br/>
+        <a href="#">Books</a><br/>
+      </div>
+    </>
+  );
+}
 
-        </div>
+/* ================= PRODUCT CARD ================= */
+function ProductCard(product) {
+  return (
+    <div className="product-card">
+      <img src={product.image} width="100%" />
 
+      <h4>{product.brand}</h4>
+      <h3>{product.name}</h3>
+      <p>⭐ {product.rating}</p>
+      <p>₹{product.price}</p>
+      <p>{product.description}</p>
+
+      <button>Add to Cart</button>
+    </div>
+  );
+}
+
+/* ================= PRODUCT LIST ================= */
+function ProductList({ products }) {
+  return (
+    <div className="product-list">
+      {products.map(p => (
+        <ProductCard key={p.id} {...p} />
+      ))}
+    </div>
+  );
+}
+
+/* ================= APP ================= */
+function App() {
+
+  const [products, setProducts] = React.useState([]);
+
+  async function fetchProducts(search = "") {
+    try {
+      const res = await fetch(
+        `http://localhost:3000/api/products?search=${search}`
       );
+
+      const data = await res.json();
+      setProducts(data);
+
+    } catch (err) {
+      console.error("Fetch error:", err);
     }
-
-
-    /* =========================
-       SIDEBAR
-    ========================== */
-
-    function Sidebar() {
-
-      const [isOpen, setIsOpen] =
-        React.useState(false);
-
-      return (
-
-        <>
-
-          <div className="menu-bar">
-
-            <button
-              className="menu-button"
-              onClick={() => setIsOpen(true)}
-            >
-              ☰ All
-            </button>
-
-            <button>Mobiles</button>
-            <button>Fashion</button>
-            <button>Electronics</button>
-            <button>Books</button>
-            <button>Home</button>
-
-          </div>
-
-          {isOpen && (
-
-            <div
-              className="overlay"
-              onClick={() => setIsOpen(false)}
-            ></div>
-
-          )}
-
-          <div
-            className={`sidebar ${isOpen ? "open" : ""}`}
-          >
-
-            <div className="sidebar-top">
-
-              <h2>Hello User</h2>
-
-              <button
-                onClick={() => setIsOpen(false)}
-              >
-                X
-              </button>
-
-            </div>
-
-            <div className="sidebar-content">
-
-              <h3>Trending</h3>
-
-              <a href="#">Best Sellers</a>
-
-              <a href="#">New Releases</a>
-
-              <a href="#">Movers & Shakers</a>
-
-              <h3>Shop By Category</h3>
-
-              <a href="#">Mobiles</a>
-
-              <a href="#">Fashion</a>
-
-              <a href="#">Books</a>
-
-              <a href="#">Electronics</a>
-
-              <a href="#">Home</a>
-
-            </div>
-
-          </div>
-
-        </>
-
-      );
-    }
-
-
-    /* =========================
-       SEARCH INFO
-    ========================== */
-
-    function SearchInfo() {
-
-      return (
-
-        <div className="search-info">
-
-          <h2>
-            1-48 of over 10,000 results for "Laptop"
-          </h2>
-
-          <p>
-            Compare products, prices, ratings and reviews before purchasing.
-          </p>
-
-        </div>
-
-      );
-    }
-
-
-    /* =========================
-       PRODUCT CARD
-    ========================== */
-
-    function ProductCard({
-
-      image,
-      brand,
-      name,
-      price,
-      rating,
-      description
-
-    }) {
-
-      return (
-
-        <div className="product-card">
-
-          <img
-            src={image}
-            alt={name}
-          />
-
-          <div className="product-details">
-
-            <h4>
-              {brand}
-            </h4>
-
-            <h3>
-              {name}
-            </h3>
-
-            <div className="rating">
-              ⭐ {rating}
-            </div>
-
-            <div className="price">
-              {price}
-            </div>
-
-            <p>
-              {description}
-            </p>
-
-            <button>
-              Add to Cart
-            </button>
-
-          </div>
-
-        </div>
-
-      );
-    }
-
-
-    /* =========================
-       PRODUCT SECTION
-    ========================== */
-
-    function ProductSection({
-
-      title,
-      items
-
-    }) {
-
-      return (
-
-        <div className="product-section">
-
-          <h2>
-            {title}
-          </h2>
-
-          <div className="product-list">
-
-            {items.map(product => (
-
-              <ProductCard
-
-                key={product.id}
-
-                image={product.image}
-
-                brand={product.brand}
-
-                name={product.name}
-
-                price={product.price}
-
-                rating={product.rating}
-
-                description={product.description}
-
-              />
-
-            ))}
-
-          </div>
-
-        </div>
-
-      );
-    }
-
-
-    /* =========================
-       INFO SECTION
-    ========================== */
-
-    function InfoSection() {
-
-      return (
-
-        <div className="info-section">
-
-          <div>
-
-            <h3>
-              Get to Know Us
-            </h3>
-
-            <a href="#">
-              About Us
-            </a>
-
-            <a href="#">
-              Careers
-            </a>
-
-            <a href="#">
-              Press Releases
-            </a>
-
-          </div>
-
-          <div>
-
-            <h3>
-              Connect With Us
-            </h3>
-
-            <a href="#">
-              Instagram
-            </a>
-
-            <a href="#">
-              Facebook
-            </a>
-
-            <a href="#">
-              Twitter
-            </a>
-
-          </div>
-
-          <div>
-
-            <h3>
-              Make Money
-            </h3>
-
-            <a href="#">
-              Sell on Market.in
-            </a>
-
-            <a href="#">
-              Affiliate Program
-            </a>
-
-            <a href="#">
-              Advertise Products
-            </a>
-
-          </div>
-
-        </div>
-
-      );
-    }
-
-
-    /* =========================
-       FOOTER
-    ========================== */
-
-    function Footer() {
-
-      return (
-
-        <div className="footer">
-
-          © 2026 Market.in
-
-        </div>
-
-      );
-    }
-
-
-    /* =========================
-       APP
-    ========================== */
-
-    function App() {
-
-      return (
-
-        <>
-
-          <Header />
-
-          <Sidebar />
-
-          <SearchInfo />
-
-          <ProductSection
-            title="Best Sellers"
-            items={products}
-          />
-
-          <ProductSection
-            title="Recommended Products"
-            items={products}
-          />
-
-          <InfoSection />
-
-          <Footer />
-
-        </>
-
-      );
-    }
+  }
+
+  React.useEffect(() => {
+    fetchProducts(); // load all
+  }, []);
+
+  return (
+    <>
+      <Header onSearch={fetchProducts} />
+      <Sidebar />
+      <ProductList products={products} />
+    </>
+  );
+}
 
 
     ReactDOM

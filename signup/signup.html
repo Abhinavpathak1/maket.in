@@ -204,14 +204,17 @@
         }
 
         return (
-          <div className="signup-container">
 
+        <div className="vertical-container4">
+          <div className="signup-container">
+            
             <form
               className="signup-card"
               onSubmit={handleSubmit}
             >
 
               <h1>Create Account</h1>
+              <label htmlFor="name">Name</label>
 
               <input
                 type="text"
@@ -221,6 +224,7 @@
                 onChange={handleChange}
                 required
               />
+              <label htmlFor="email">Email</label>
 
               <input
                 type="email"
@@ -230,6 +234,7 @@
                 onChange={handleChange}
                 required
               />
+              <label htmlFor="password">Password</label>
 
               <input
                 type="password"
@@ -239,6 +244,7 @@
                 onChange={handleChange}
                 required
               />
+              <label htmlFor="mobile">Mobile Number</label>
 
               <input
                 type="number"
@@ -248,14 +254,82 @@
                 onChange={handleChange}
                 required
               />
+              <label htmlFor="date">Date of Birth</label>
+              <input
+                type="date"
+                name="date"
+                required
+              />
+              <lable htmlFor="gender">Gender </lable>
+              <select name="gender" required>
+                <option value="">Select Gender</option>
+                <option value="male">Male</option>  
+                <option value="female">Female</option>
+                <option value="other">Other</option>
+              </select>
+              <label htmlFor="country">Country</label>
+              <select name="country" required>
+                <option value="">Select Country</option>
+                <option value="india">India</option>
+                <option value="usa">USA</option>
+                <option value="uk">UK</option>
+                <option value="australia">Australia</option>
+              </select>
+              <label htmlFor="photo">Profile Photo</label>
+              <input
+                type="file"
+                name="photo"
+                accept="image/*"
+              />
+              <label htmlFor = "address">Address</label>
+              <textarea
+                name="address"
+                placeholder="Enter Address"
+                value={formData.address}
+                onChange={handleChange}
+                required
+              ></textarea>
+              <label htmlFor="security">Security Question</label>
+              <select name="security" required>
+                <option value="">Select a Security Question</option>
+                <option value="pet">What is your pet's name?</option>
+                <option value="school">What is your first school's name?</option>
+                <option value="mother">What is your mother's maiden name?</option>
+              </select>
+              <input
+                type="text"
+                name="securityAnswer"
+                placeholder="Enter Security Answer"
+                value={formData.securityAnswer}
+                onChange={handleChange}
+                required
+              />
+              <label htmlFor="newsletter">
+                <input
+                  type="checkbox"
+                  name="newsletter"
+                />
+                Subscribe to our newsletter
+              </label>
+              <label htmlFor="terms">
+                <input
+                  type="checkbox"
+                  name="terms"
+                  required
+                />
+                I agree to the Terms and Conditions
+              </label>
 
               <button type="submit">
                 Sign Up
               </button>
 
             </form>
+          
 
           </div>
+
+        </div>
         );
       }
 

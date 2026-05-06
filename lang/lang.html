@@ -127,23 +127,45 @@ function Option() {
   );
 }
 function Bady(){
-  return(
-    <div>
-      <p>Language Settings</p>
-      <p>Select the language you prefer for browsing, shopping and communications.</p>
-      <form>
-        <input type="radio" id="english" name="language" value="english" />
-        <label htmlFor="english">English</label><br />  
-        <input type="radio" id="hindi" name="language" value="hindi" />
-        <label htmlFor="hindi">Hindi</label><br />
-        <input type="radio" id="bengali" name="language" value="bengali" />
-        <label htmlFor="bengali">Bengali</label><br />
-        <input type="radio" id="tamil" name="language" value="tamil" />
-        <label htmlFor="tamil">Tamil</label><br />
-        <input type="radio" id="telugu" name="language" value="telugu" />
-        <label htmlFor="telugu">Telugu</label><br />
-        <button type="submit">Save Changes</button>
+    return (
+    <div className="language-container">
+      <div className="language-card">
+        <h2>Language Settings</h2>
+        <p>Select your preferred language for browsing and shopping.</p>
+
+        <form>
+          <div className="language-options">
+
+            <label>
+              <input type="radio" name="language" value="english" />
+              English
+            </label>
+
+            <label>
+              <input type="radio" name="language" value="hindi" />
+              Hindi
+            </label>
+
+            <label>
+              <input type="radio" name="language" value="bengali" />
+              Bengali
+            </label>
+
+            <label>
+              <input type="radio" name="language" value="tamil" />
+              Tamil
+            </label>
+
+            <label>
+              <input type="radio" name="language" value="telugu" />
+              Telugu
+            </label>
+
+          </div>
+
+          <button type="submit">Save Changes</button>
         </form>
+      </div>
     </div>
   );
 }
