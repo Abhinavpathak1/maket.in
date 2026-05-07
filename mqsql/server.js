@@ -26,10 +26,40 @@ db.connect(err => {
 
 // 📌 API: Register user
 app.post('/api/register', (req, res) => {
-  const { email, password } = req.body;
+    const {
+  name,
+  email,
+  password,
+  mobile,
+  date,
+  gender,
+  country,
+  address,
+  security,
+  securityAnswer
+   } = req.body;
 
-  const sql = 'INSERT INTO users (email, password) VALUES (?, ?)';
-  db.query(sql, [email, password], (err, result) => {
+      const sql = `
+      INSERT INTO users
+      (name, email, password, mobile, date, gender, country, address, security, securityAnswer)
+      VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+      `;
+
+  db.query(
+  sql,
+  [
+    name,
+    email,
+    password,
+    mobile,
+    date,
+    gender,
+    country,
+    address,
+    security,
+    securityAnswer
+  ],
+  (err, result) =>  {
     if (err) {
       return res.status(500).json(err);
     }
