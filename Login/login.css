@@ -191,14 +191,18 @@ hr{
     box-shadow:  3px 6px rgba(32, 31, 31, 0.1);
 }
 .card button{
-    padding: 10px 20px;
-    border-radius: 5px;
-    background-color: #f8e834;
-    color: rgb(15, 11, 11);
+    padding: 12px 30px;
+    border-radius: 8px;
+    background-color: #FFD814;
+    color: #111;
     border: none;
     cursor: pointer;
-    box-shadow: #131921 0px 4px 8px;
-    
+    font-size: 16px;
+    font-weight: bold;
+    width: 320px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    margin-top: 10px;
 }
 .card button:hover{
     background-color: #f8e834;
@@ -206,6 +210,7 @@ hr{
     border: none;
     cursor: pointer;
     box-shadow: #131921 0px 6px 12px;
+    
 }
 .card a{
     color: rgb(3, 125, 201);
@@ -225,7 +230,7 @@ hr{
 .card p{
     color: #131921;
     font-size: 20px;
-    padding-top: 0;
+    padding-top: 20px;
     border-top: none;
 }
 .vertical-containerheader2 button{
@@ -286,4 +291,6 @@ form{
 
 
 }
-
+.hii{ display: flex;
+  flex-direction : row;
+  gap : 20px;}

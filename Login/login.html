@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
   <head>
@@ -16,8 +17,10 @@
     <script src="https://unpkg.com/react-router-dom/umd/react-router-dom.min.js"></script>
 
     <script src="https://unpkg.com/supersimpledev/babel.js"></script>
-    
+    <scrip src="/app.js"/>
     <script type="text/babel">
+    
+    
         
 function Header(){
   return(
@@ -126,41 +129,171 @@ function Option() {
     </>
   );
 }
-function Card(){
-  const [email, setEmail] = React.useState("");
-  const handleSubmit = () => {
-    fetch('http://localhost:3000/api/login', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({ email })
-    })
-    .then(res => res.json())
-    .then(data => {
-      console.log("Login response:", data);
-      alert("Login successful!");
+function Card() {
+
+  const [step, setStep] = React.useState(0);
+
+  const [formData, setFormData] = React.useState({
+    email: "",
+    password: ""
+  });
+
+  // Handle input changes
+  function handleChange(e) {
+
+    const { name, value } = e.target;
+
+    setFormData({
+      ...formData,
+      [name]: value
     });
-  };
-  return(
+  }
+
+  // Move to password step
+  function handleNext(e) {
+
+    e.preventDefault();
+
+    if (!formData.email) {
+      alert("Please enter email");
+      return;
+    }
+
+    setStep(1);
+  }
+
+  // Login submit
+  async function handleSubmit(e) {
+
+    e.preventDefault();
+
+    try {
+
+      const response = await fetch(
+        'http://localhost:3000/api/login',
+        {
+          method: 'POST',
+
+          headers: {
+            'Content-Type': 'application/json'
+          },
+
+          body: JSON.stringify({
+            email: formData.email,
+            password: formData.password
+          })
+        }
+      );
+
+      const data = await response.json();
+      console.log(data);
+
+      if (response.ok) {
+
+        alert("Login successful!");
+        window.location.href = "../index.html";
+        
+
+        
+
+      } else {
+
+        alert(data.message || "Login failed");
+
+      }
+
+    } catch (error) {
+
+      console.error(error);
+
+      alert("Server error");
+
+    }
+  }
+
+  return (
+
     <div className="card">
-      <h2>Markit.in</h2>
+
+      <h2>Market.in</h2>
+
       <p>Sign in to your account</p>
-      <input 
-        type="text" 
-        placeholder="email or mobile number" 
-        size="50"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-      />
-      <button onClick={handleSubmit}>Continue</button>
-      <p> by continuing, you agree to Market.in's <a href="conditionofuse.txt">Conditions of Use</a> and <a href="privacy.html">Privacy Notice</a>.</p>
-      <hr/>
-      <h4>buying for work?</h4>
-      <a href="#">Create a free business account</a>
+
+      <form
+        onSubmit={step === 0 ? handleNext : handleSubmit} className = "hii"
+      >
+
+        {step === 0 && (
+
+          <div >
+
+            <input
+              type="text"
+              name="email"
+              placeholder="Email or mobile number"
+              size="50"
+              value={formData.email}
+              onChange={handleChange}
+              required
+            />
+            <br/>
+
+            <button type="submit">
+              Continue
+            </button>
+
+          </div>
+
+        )}
+
+        {step === 1 && (
+
+          <div >
+
+            <input
+              type="password"
+              name="password"
+              placeholder="Enter Password"
+              size="50"
+              value={formData.password}
+              onChange={handleChange}
+              required
+            />
+            <br/>
+
+            <button type="submit">
+              Login
+            </button>
+
+          </div>
+
+        )}
+
+      </form>
+
+      <p>
+        By continuing, you agree to Market.in's
+        <a href="conditionofuse.txt">
+          Conditions of Use
+        </a>
+        and
+        <a href="privacy.html">
+          Privacy Notice
+        </a>.
+      </p>
+
+      <hr />
+
+      <h4>Buying for work?</h4>
+
+      <a href="#">
+        Create a free business account
+      </a>
+
     </div>
   );
 }
+
 /* ================= INFO ================= */
 function Info(){
   return(
