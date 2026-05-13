@@ -1,537 +1,610 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title>Signup Page</title>
+<html lang="en">
 
-    <meta charset="UTF-8" />
+<head>
 
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1.0"
-    />
+  <meta charset="UTF-8" />
 
-    <link rel="stylesheet" href="signup.css" />
-  </head>
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  />
 
-  <body>
+  <title>Market.in Signup</title>
 
-    <div class="js-container"></div>
+  <link
+    rel="stylesheet"
+    href="signup.css"
+  />
 
-    <!-- React -->
-    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+  <!-- React -->
+  <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
 
-    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
 
-    <!-- Babel -->
-    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <!-- Babel -->
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 
-    <script type="text/babel">
+</head>
 
-      /* ================= HEADER ================= */
+<body>
 
-      function Header() {
+  <div class="js-container"></div>
 
-        return (
-          <div className="vertical-containerheader">
+  <script type="text/babel">
 
-            <div className="logo">
-              <h2>Market.in</h2>
-              <p>Delivering the best products</p>
-            </div>
+    /* ================= HEADER ================= */
 
-            <select className="se">
-              <option>All</option>
-              <option>Electronics</option>
-              <option>Clothing</option>
-              <option>Home</option>
-            </select>
+    function Header() {
 
-            <form className="search-form">
-              <input
-                type="text"
-                placeholder="Search products..."
-              />
+      return (
 
-              <button type="submit">
-                Search
-              </button>
-            </form>
+        <div className="header">
 
-            <select className="se">
-              <option>India</option>
-              <option>USA</option>
-            </select>
+          <div className="logo">
 
-            <button className="se">
+            <h1>Market.in</h1>
+
+            <p>
+              Delivering the best products
+            </p>
+
+          </div>
+
+          <div className="header-buttons">
+
+            <button>
               Login
             </button>
 
-            <button className="se">
-              Returns & Orders
+            <button>
+              Orders
             </button>
 
           </div>
-        );
-      }
 
-      /* ================= OPTION ================= */
+        </div>
+      );
+    }
 
-      function Option() {
+    /* ================= OPTION ================= */
 
-        const [isOpen, setIsOpen] = React.useState(false);
+    function Option() {
 
-        const links = [
-          { name: "MX Player", path: "#" },
-          { name: "Mobiles", path: "#" },
-          { name: "Fashion", path: "#" },
-          { name: "Books", path: "#" },
-          { name: "Home", path: "#" }
-        ];
+      const [isOpen, setIsOpen] =
+        React.useState(false);
 
-        return (
-          <>
-            <div className="vertical-containerheader2">
+      return (
 
-              <button
-                className="menu-btn"
-                onClick={() => setIsOpen(true)}
-              >
-                All
-              </button>
+        <>
 
-              <div className="top-links">
+          <div className="topbar">
 
-                {links.map((link) => (
-                  <button
-                    key={link.name}
-                    onClick={() => window.location.href = link.path}
-                  >
-                    {link.name}
-                  </button>
-                ))}
+            <button
+              className="menu-btn"
+              onClick={() => setIsOpen(true)}
+            >
+              ☰ All
+            </button>
 
-              </div>
+            <div className="top-links">
+
+              <button>Mobiles</button>
+
+              <button>Fashion</button>
+
+              <button>Books</button>
+
+              <button>Home</button>
 
             </div>
 
-            {/* Overlay */}
-            {isOpen && (
+          </div>
+
+          {
+            isOpen && (
+
               <div
                 className="overlay"
                 onClick={() => setIsOpen(false)}
-              ></div>
-            )}
+              >
 
-            {/* Sidebar */}
-            <div className={`side-menu ${isOpen ? "open" : ""}`}>
-
-              <div className="top">
-
-                <button
-                  onClick={() => setIsOpen(false)}
+                <div
+                  className="sidebar"
+                  onClick={(e) =>
+                    e.stopPropagation()
+                  }
                 >
-                  X
-                </button>
 
-                <h2>Hello User</h2>
+                  <button
+                    className="close-btn"
+                    onClick={() =>
+                      setIsOpen(false)
+                    }
+                  >
+                    ✕
+                  </button>
+
+                  <h2>Hello User</h2>
+
+                  <a href="#">
+                    Best Sellers
+                  </a>
+
+                  <a href="#">
+                    New Releases
+                  </a>
+
+                  <a href="#">
+                    Fashion
+                  </a>
+
+                  <a href="#">
+                    Mobiles
+                  </a>
+
+                  <a href="#">
+                    Books
+                  </a>
+
+                </div>
 
               </div>
+            )
+          }
 
-              <div className="side-menu-content">
-
-                <h3>Trending</h3>
-
-                <a href="#">Best Sellers</a>
-                <a href="#">New Releases</a>
-                <a href="#">Movers and Shakers</a>
-
-                <h3>Digital Content</h3>
-
-                <a href="#">Prime Video</a>
-                <a href="#">Amazon Music</a>
-                <a href="#">App Store</a>
-
-                <h3>Shop By Category</h3>
-
-                <a href="#">Mobiles</a>
-                <a href="#">Fashion</a>
-                <a href="#">Books</a>
-                <a href="#">Home</a>
-
-                <h3>Help & Settings</h3>
-
-                <a href="#">Your Account</a>
-                <a href="#">Customer Service</a>
-                <a href="#">Sign In</a>
-
-              </div>
-
-            </div>
-          </>
-        );
-      }
-
-      /* ================= SIGNUP CARD ================= */
-
-     function Card() {
-
-  const [formData, setFormData] = React.useState({
-    name: "",
-    email: "",
-    password: "",
-    mobile: "",
-    date: "",
-    gender: "",
-    country: "",
-    address: "",
-    security: "",
-    securityAnswer: ""
-  });
-
-  function handleChange(event) {
-
-    const { name, value } = event.target;
-
-    setFormData({
-      ...formData,
-      [name]: value
-    });
-  }
-
-  async function handleSubmit(event) {
-
-    event.preventDefault();
-
-    try {
-
-      const response = await fetch(
-        'http://localhost:3000/api/register',
-        {
-          method: 'POST',
-
-          headers: {
-            'Content-Type': 'application/json'
-          },
-
-          body: JSON.stringify(formData)
-        }
+        </>
       );
+    }
 
-      const data = await response.json();
+    /* ================= SIGNUP CARD ================= */
 
-      if (response.ok) {
+    function SignupCard() {
 
-        alert(
-          "Signup Successful!\n\n" +
-          "Name: " + formData.name +
-          "\nEmail: " + formData.email
-        );
+      const [step, setStep] =
+        React.useState(1);
 
-        setFormData({
+      const [accountId, setAccountId] =
+        React.useState("");
+
+      const [formData, setFormData] =
+        React.useState({
+
+          /* Step 1 */
           name: "",
           email: "",
           password: "",
+
+          /* Step 2 */
           mobile: "",
-          date: "",
           gender: "",
           country: "",
-          address: "",
-          security: "",
-          securityAnswer: ""
+
+          /* Step 3 */
+          userType: "",
+          preference: ""
+
         });
 
-      } else {
+      /* ========== HANDLE CHANGE ========== */
 
-        alert(data.message || "Registration failed");
+      function handleChange(e) {
 
+        const { name, value } = e.target;
+
+        setFormData({
+
+          ...formData,
+          [name]: value
+
+        });
       }
 
-    } catch (error) {
+      /* ========== NEXT STEP ========== */
 
-      console.error(error);
+      function nextStep() {
 
-      alert("Server Error");
+        setStep(step + 1);
+      }
 
+      /* ========== PREVIOUS STEP ========== */
+
+      function prevStep() {
+
+        setStep(step - 1);
+      }
+
+      /* ========== FINAL SUBMIT ========== */
+
+      async function handleSubmit(e) {
+
+        e.preventDefault();
+
+        try {
+
+          const response = await fetch(
+            "http://localhost:3000/api/register",
+            {
+
+              method: "POST",
+
+              headers: {
+                "Content-Type":
+                  "application/json"
+              },
+
+              body: JSON.stringify(formData)
+
+            }
+          );
+
+          const data =
+            await response.json();
+
+          if (response.ok) {
+
+            alert(
+              "Account Created Successfully!"
+            );
+
+            setAccountId(
+              data.accountId
+            );
+
+            console.log(data);
+
+          } else {
+
+            alert(
+              data.message ||
+              "Signup Failed"
+            );
+          }
+
+        } catch (error) {
+
+          console.error(error);
+
+          alert("Server Error");
+
+        }
+      }
+
+      return (
+
+        <div className="signup-wrapper">
+
+          <div className="signup-card">
+
+            <h1>
+              Create Account
+            </h1>
+
+            <p>
+              Join Market.in today
+            </p>
+
+            {/* STEP INDICATOR */}
+
+            <div className="steps">
+
+              <div
+                className={
+                  step >= 1
+                    ? "active-step"
+                    : "step"
+                }
+              >
+                1
+              </div>
+
+              <div
+                className={
+                  step >= 2
+                    ? "active-step"
+                    : "step"
+                }
+              >
+                2
+              </div>
+
+              <div
+                className={
+                  step >= 3
+                    ? "active-step"
+                    : "step"
+                }
+              >
+                3
+              </div>
+
+            </div>
+
+            <form onSubmit={handleSubmit}>
+
+              {/* ================= STEP 1 ================= */}
+
+              {
+                step === 1 && (
+
+                  <div className="form-section">
+
+                    <input
+                      type="text"
+                      name="name"
+                      placeholder="Enter Name"
+                      value={formData.name}
+                      onChange={handleChange}
+                      required
+                    />
+
+                    <input
+                      type="email"
+                      name="email"
+                      placeholder="Enter Email"
+                      value={formData.email}
+                      onChange={handleChange}
+                      required
+                    />
+
+                    <input
+                      type="password"
+                      name="password"
+                      placeholder="Enter Password"
+                      value={formData.password}
+                      onChange={handleChange}
+                      required
+                    />
+
+                    <button
+                      type="button"
+                      onClick={nextStep}
+                    >
+                      Continue
+                    </button>
+
+                  </div>
+                )
+              }
+
+              {/* ================= STEP 2 ================= */}
+
+              {
+                step === 2 && (
+
+                  <div className="form-section">
+
+                    <input
+                      type="number"
+                      name="mobile"
+                      placeholder="Mobile Number"
+                      value={formData.mobile}
+                      onChange={handleChange}
+                      required
+                    />
+
+                    <select
+                      name="gender"
+                      value={formData.gender}
+                      onChange={handleChange}
+                      required
+                    >
+
+                      <option value="">
+                        Select Gender
+                      </option>
+
+                      <option value="male">
+                        Male
+                      </option>
+
+                      <option value="female">
+                        Female
+                      </option>
+
+                      <option value="other">
+                        Other
+                      </option>
+
+                    </select>
+
+                    <select
+                      name="country"
+                      value={formData.country}
+                      onChange={handleChange}
+                      required
+                    >
+
+                      <option value="">
+                        Select Country
+                      </option>
+
+                      <option value="india">
+                        India
+                      </option>
+
+                      <option value="usa">
+                        USA
+                      </option>
+
+                    </select>
+
+                    <div className="btn-group">
+
+                      <button
+                        type="button"
+                        onClick={prevStep}
+                      >
+                        Back
+                      </button>
+
+                      <button
+                        type="button"
+                        onClick={nextStep}
+                      >
+                        Continue
+                      </button>
+
+                    </div>
+
+                  </div>
+                )
+              }
+
+              {/* ================= STEP 3 ================= */}
+
+              {
+                step === 3 && (
+
+                  <div className="form-section">
+
+                    <select
+                      name="userType"
+                      value={formData.userType}
+                      onChange={handleChange}
+                      required
+                    >
+
+                      <option value="">
+                        User Type
+                      </option>
+
+                      <option value="seller">
+                        Seller
+                      </option>
+
+                      <option value="buyer">
+                        Buyer
+                      </option>
+
+                    </select>
+
+                    <select
+                      name="preference"
+                      value={formData.preference}
+                      onChange={handleChange}
+                      required
+                    >
+
+                      <option value="">
+                        Preference
+                      </option>
+
+                      <option value="mobile">
+                        Mobile
+                      </option>
+
+                      <option value="fashion">
+                        Fashion
+                      </option>
+
+                      <option value="sports">
+                        Sports
+                      </option>
+
+                      <option value="kids">
+                        Kids
+                      </option>
+
+                    </select>
+
+                    <div className="btn-group">
+
+                      <button
+                        type="button"
+                        onClick={prevStep}
+                      >
+                        Back
+                      </button>
+
+                      <button type="submit">
+                        Create Account
+                      </button>
+
+                    </div>
+
+                  </div>
+                )
+              }
+
+            </form>
+
+            {
+              accountId && (
+
+                <div className="success-box">
+
+                  <h2>
+                    Account Created
+                  </h2>
+
+                  <p>
+                    Your Account ID
+                  </p>
+
+                  <div className="account-id">
+
+                    {accountId}
+
+                  </div>
+
+                </div>
+              )
+            }
+
+          </div>
+
+        </div>
+      );
     }
-  }
-
-  return (
-
-    <div className="vertical-container4">
-
-      <div className="signup-container">
-
-        <form
-          className="signup-card"
-          onSubmit={handleSubmit}
-        >
-
-          <h1>Create Account</h1>
-
-          <label>Name</label>
-
-          <input
-            type="text"
-            name="name"
-            placeholder="Enter Name"
-            value={formData.name}
-            onChange={handleChange}
-            required
-          />
-
-          <label>Email</label>
-
-          <input
-            type="email"
-            name="email"
-            placeholder="Enter Email"
-            value={formData.email}
-            onChange={handleChange}
-            required
-          />
-
-          <label>Password</label>
-
-          <input
-            type="password"
-            name="password"
-            placeholder="Enter Password"
-            value={formData.password}
-            onChange={handleChange}
-            required
-          />
-
-          <label>Mobile Number</label>
-
-          <input
-            type="number"
-            name="mobile"
-            placeholder="Enter Mobile Number"
-            value={formData.mobile}
-            onChange={handleChange}
-            required
-          />
-
-          <label>Date of Birth</label>
-
-          <input
-            type="date"
-            name="date"
-            value={formData.date}
-            onChange={handleChange}
-            required
-          />
-
-          <label>Gender</label>
-
-          <select
-            name="gender"
-            value={formData.gender}
-            onChange={handleChange}
-            required
-          >
-            <option value="">Select Gender</option>
-            <option value="male">Male</option>
-            <option value="female">Female</option>
-            <option value="other">Other</option>
-          </select>
-
-          <label>Country</label>
-
-          <select
-            name="country"
-            value={formData.country}
-            onChange={handleChange}
-            required
-          >
-            <option value="">Select Country</option>
-            <option value="india">India</option>
-            <option value="usa">USA</option>
-            <option value="uk">UK</option>
-            <option value="australia">Australia</option>
-          </select>
-
-          <label>Profile Photo</label>
-
-          <input
-            type="file"
-            name="photo"
-            accept="image/*"
-          />
 
-          <label>Address</label>
+    /* ================= FOOTER ================= */
 
-          <textarea
-            name="address"
-            placeholder="Enter Address"
-            value={formData.address}
-            onChange={handleChange}
-            required
-          ></textarea>
+    function Footer() {
 
-          <label>Security Question</label>
+      return (
 
-          <select
-            name="security"
-            value={formData.security}
-            onChange={handleChange}
-            required
-          >
-            <option value="">Select a Security Question</option>
-            <option value="pet">
-              What is your pet's name?
-            </option>
+        <div className="footer">
 
-            <option value="school">
-              What is your first school's name?
-            </option>
+          © 2026 Market.in
 
-            <option value="mother">
-              What is your mother's maiden name?
-            </option>
-          </select>
+        </div>
+      );
+    }
 
-          <input
-            type="text"
-            name="securityAnswer"
-            placeholder="Enter Security Answer"
-            value={formData.securityAnswer}
-            onChange={handleChange}
-            required
-          />
+    /* ================= APP ================= */
 
-          <label>
+    function App() {
 
-            <input
-              type="checkbox"
-              name="newsletter"
-            />
+      return (
 
-            Subscribe to newsletter
+        <>
 
-          </label>
+          <Header />
 
-          <label>
+          <Option />
 
-            <input
-              type="checkbox"
-              name="terms"
-              required
-            />
+          <SignupCard />
 
-            I agree to Terms & Conditions
+          <Footer />
 
-          </label>
+        </>
+      );
+    }
 
-          <button type="submit">
-            Sign Up
-          </button>
+    /* ================= RENDER ================= */
 
-        </form>
-
-      </div>
-
-    </div>
-  );
-}
-
-      /* ================= INFO ================= */
-
-      function Info() {
-
-        return (
-          <>
-            <div className="back-top">
-              <button>
-                Back to top
-              </button>
-            </div>
-
-            <div className="info">
-
-              <div className="link">
-
-                <h2>Get to know us</h2>
-
-                <a href="#">About</a>
-                <a href="#">Careers</a>
-
-              </div>
-
-              <div className="link">
-
-                <h2>Connect</h2>
-
-                <a href="#">Instagram</a>
-                <a href="#">Facebook</a>
-
-              </div>
-
-              <Link />
-
-            </div>
-          </>
-        );
-      }
-
-      /* ================= LINKS ================= */
-
-      function Link() {
-
-        return (
-          <div className="link">
-
-            <h2>Services</h2>
-
-            <a href="#">Market Pay</a>
-            <a href="#">Audible</a>
-            <a href="#">Gift Cards</a>
-
-          </div>
-        );
-      }
-
-      /* ================= FOOTER ================= */
-
-      function Footer() {
-
-        return (
-          <div id="footer">
-            © 2026 Market.in
-          </div>
-        );
-      }
-
-      /* ================= APP ================= */
-
-      function App() {
-
-        return (
-          <>
-            <Header />
-
-            <Option />
-
-            <Card />
-
-            <div className="info-footer">
-              <Info />
-            </div>
-
-            <Footer />
-          </>
-        );
-      }
-
-      /* ================= RENDER ================= */
-
-      const root = ReactDOM.createRoot(
-        document.querySelector(".js-container")
+    const root =
+      ReactDOM.createRoot(
+        document.querySelector(
+          ".js-container"
+        )
       );
 
-      root.render(<App />);
+    root.render(<App />);
 
-    </script>
+  </script>
 
-  </body>
+</body>
+
 </html>
