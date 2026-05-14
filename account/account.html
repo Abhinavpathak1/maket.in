@@ -2,16 +2,26 @@
 <html>
   <head>
     <title>Account Page</title>
+
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
+
     <link rel="stylesheet" href="account.css" />
+
+
   </head>
 
   <body>
+
     <div class="js-container"></div>
 
     <!-- React -->
     <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+
     <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
 
     <!-- Babel -->
@@ -22,22 +32,30 @@
       /* ================= HEADER ================= */
 
       function Header() {
+
         return (
+
           <div className="vertical-containerheader">
 
             <div className="logo">
+
               <h2>Market.in</h2>
-              <p>delivering the best products</p>
+
+              <p>Delivering the best products</p>
+
             </div>
 
             <select className="se">
+
               <option>All</option>
               <option>Electronics</option>
               <option>Clothing</option>
               <option>Home</option>
+
             </select>
 
             <form className="search-form">
+
               <input
                 type="text"
                 placeholder="Search products..."
@@ -46,15 +64,23 @@
               <button type="submit">
                 Search
               </button>
+
             </form>
 
             <select className="se">
+
               <option>India</option>
               <option>USA</option>
+
             </select>
 
-            <button className="se">Login</button>
-            <button className="se">Returns & Orders</button>
+            <button className="se">
+              Login
+            </button>
+
+            <button className="se">
+              Returns & Orders
+            </button>
 
           </div>
         );
@@ -64,18 +90,20 @@
 
       function Option() {
 
-        const [isOpen, setIsOpen] = React.useState(false);
+        const [isOpen, setIsOpen] =
+          React.useState(false);
 
         const links = [
-          { name: "MX Player", path: "/mx-player" },
-          { name: "Mobiles", path: "/mobiles" },
-          { name: "Fashion", path: "/fashion" },
-          { name: "Books", path: "/books" },
-          { name: "Home", path: "/home" }
+          { name: "MX Player", path: "#" },
+          { name: "Mobiles", path: "#" },
+          { name: "Fashion", path: "#" },
+          { name: "Books", path: "#" },
+          { name: "Home", path: "#" }
         ];
 
         return (
           <>
+
             <div className="vertical-containerheader2">
 
               <button
@@ -85,37 +113,52 @@
                 All
               </button>
 
-              {/* Top Menu */}
               <div className="top-links">
-                {links.map((link) => (
+
+                {links.map((link, index) => (
+
                   <button
-                    key={link.path}
-                    onClick={() => window.location.href = link.path}
+                    key={index}
+                    onClick={() =>
+                      window.location.href = link.path
+                    }
                   >
                     {link.name}
                   </button>
+
                 ))}
+
               </div>
 
             </div>
 
             {/* Overlay */}
             {isOpen && (
+
               <div
                 className="overlay"
                 onClick={() => setIsOpen(false)}
               ></div>
+
             )}
 
             {/* Sidebar */}
-            <div className={`side-menu ${isOpen ? "open" : ""}`}>
+            <div
+              className={
+                `side-menu ${isOpen ? "open" : ""}`
+              }
+            >
 
               <div className="top">
-                <button onClick={() => setIsOpen(false)}>
+
+                <button
+                  onClick={() => setIsOpen(false)}
+                >
                   X
                 </button>
 
                 <h2>Hello User</h2>
+
               </div>
 
               <div className="side-menu-content">
@@ -148,32 +191,8 @@
               </div>
 
             </div>
+
           </>
-        );
-      }
-
-      /* ================= LOGBOARD ================= */
-
-      function Logbord({ title, products }) {
-
-        return (
-          <div id="logbord">
-
-            <h2>{title}</h2>
-
-            <div className="logboard-images">
-
-              {products.map((item, index) => (
-                <img
-                  key={index}
-                  src={item}
-                  alt="product"
-                />
-              ))}
-
-            </div>
-
-          </div>
         );
       }
 
@@ -181,133 +200,218 @@
 
       function Card() {
 
-        const [user, setUser] = React.useState({
-          name: "Rahul Sharma",
-          email: "rahul@gmail.com",
-          mobile: "9876543210",
-          address: "Mumbai, India",
-          dob: "12/08/2001"
-        });
+  const cards = [
 
-        function handleEdit() {
+    {
+      img:
+        "https://cdn-icons-png.flaticon.com/512/891/891462.png",
 
-          const newName = prompt("Enter new name", user.name);
+      title:
+        "Your Orders",
 
-          if (newName) {
-            setUser({
-              ...user,
-              name: newName
-            });
-          }
-        }
+      text:
+        "Track, return, or buy things",
 
-        return (
-          <div className="card">
+      link:
+        "../order/order.html"
+    },
+
+    {
+      img:
+        "https://cdn-icons-png.flaticon.com/512/3064/3064197.png",
+
+      title:
+        "Login & Security",
+
+      text:
+        "Edit login, name, and mobile number",
+
+      link:
+        "../security/security.html"
+    },
+
+    {
+      img:
+        "https://cdn-icons-png.flaticon.com/512/5968/5968260.png",
+
+      title:
+        "Prime",
+
+      text:
+        "View benefits and payment settings",
+
+      link:
+        "../prime/prime.html"
+    },
+
+    {
+      img:
+        "https://cdn-icons-png.flaticon.com/512/684/684908.png",
+
+      title:
+        "Your Address",
+
+      text:
+        "Manage delivery addresses",
+
+      link:
+        "../address/address.html"
+    },
+
+    {
+      img:
+        "https://cdn-icons-png.flaticon.com/512/2920/2920277.png",
+
+      title:
+        "Your Business Account",
+
+      text:
+        "Save up to 18% with GST invoice and bulk discounts",
+
+      link:
+        "../business/business.html"
+    },
+
+    {
+      img:
+        "https://cdn-icons-png.flaticon.com/512/2331/2331941.png",
+
+      title:
+        "Payment Options",
+
+      text:
+        "Edit or add payment methods",
+
+      link:
+        "../payment/payment.html"
+    },
+
+    {
+      img:
+        "https://cdn-icons-png.flaticon.com/512/597/597177.png",
+
+      title:
+        "Contact Us",
+
+      text:
+        "Contact customer service via phone or chat",
+
+      link:
+        "../contact/contact.html"
+    }
+
+  ];
+
+  return (
+
+    <div className="card-container">
+
+      {cards.map((item, index) => (
+
+        <a
+          href={item.link}
+          className="card-link"
+          key={index}
+        >
+
+          <div className="card-box">
 
             <img
-              className="profile-img"
-              src="https://via.placeholder.com/150"
-              alt="Profile"
+              src={item.img}
+              alt={item.title}
             />
 
-            <h2>{user.name}</h2>
+            <h4>
+              {item.title}
+            </h4>
 
-            <p>Email: {user.email}</p>
-
-            <p>Mobile: {user.mobile}</p>
-
-            <p>Address: {user.address}</p>
-
-            <p>DOB: {user.dob}</p>
-
-            <button onClick={handleEdit}>
-              Edit Profile
-            </button>
-
-            <div className="history-section">
-
-              <p className="section-title">
-                Order History
-              </p>
-
-              <Logbord
-                title="Previous Orders"
-                products={[
-                  "https://via.placeholder.com/100",
-                  "https://via.placeholder.com/100",
-                  "https://via.placeholder.com/100",
-                  "https://via.placeholder.com/100",
-                  "https://via.placeholder.com/100"
-                ]}
-              />
-
-              <p className="section-title">
-                Suggested For You
-              </p>
-
-              <Logbord
-                title="Recommended Products"
-                products={[
-                  "https://via.placeholder.com/100",
-                  "https://via.placeholder.com/100",
-                  "https://via.placeholder.com/100",
-                  "https://via.placeholder.com/100",
-                  "https://via.placeholder.com/100"
-                ]}
-              />
-
-            </div>
+            <p>
+              {item.text}
+            </p>
 
           </div>
-        );
-      }
 
-      /* ================= INFO ================= */
+        </a>
 
-      function Info() {
+      ))}
 
-        return (
-          <>
-            <div className="back-top">
-              <button>
-                Back to top
-              </button>
-            </div>
+    </div>
+  );
+}
+/* ================= INFO ================= */
 
-            <div className="info">
+function Info() {
 
-              <div className="link">
+  return (
 
-                <h2>Get to know us</h2>
+    <>
 
-                <a href="#">About</a>
-                <a href="#">Careers</a>
-                <a href="#">Press Releases</a>
+      <div className="back-top">
 
-              </div>
+        <button
+          onClick={() =>
+            window.scrollTo({
+              top: 0,
+              behavior: "smooth"
+            })
+          }
+        >
+          Back to top
+        </button>
 
-              <div className="link">
+      </div>
 
-                <h2>Connect</h2>
+      <div className="info">
 
-                <a href="#">Instagram</a>
-                <a href="#">Facebook</a>
-                <a href="#">Twitter</a>
+        <div className="link">
 
-              </div>
+          <h2>Get to know us</h2>
 
-              <Link />
+          <a href="#">
+            About
+          </a>
 
-            </div>
-          </>
-        );
-      }
+          <a href="#">
+            Careers
+          </a>
 
+          <a href="#">
+            Press Releases
+          </a>
+
+        </div>
+
+        <div className="link">
+
+          <h2>Connect with us</h2>
+
+          <a href="#">
+            Instagram
+          </a>
+
+          <a href="#">
+            Facebook
+          </a>
+
+          <a href="#">
+            Twitter
+          </a>
+
+        </div>
+
+        <Link />
+
+      </div>
+
+    </>
+  );
+}
       /* ================= LINKS ================= */
 
       function Link() {
 
         return (
+
           <div className="link">
 
             <h2>Services</h2>
@@ -325,8 +429,11 @@
       function Footer() {
 
         return (
+
           <div id="footer">
+
             © 2026 Market.in
+
           </div>
         );
       }
@@ -337,29 +444,31 @@
 
         return (
           <>
+
             <Header />
 
             <Option />
 
             <Card />
 
-            <div className="info-footer">
-              <Info />
-            </div>
+            <Info />
 
             <Footer />
+
           </>
         );
       }
 
       /* ================= RENDER ================= */
 
-      const root = ReactDOM.createRoot(
-        document.querySelector(".js-container")
-      );
+      const root =
+        ReactDOM.createRoot(
+          document.querySelector(".js-container")
+        );
 
       root.render(<App />);
 
     </script>
+
   </body>
 </html>
