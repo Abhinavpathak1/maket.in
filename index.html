@@ -1,261 +1,850 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>practice</title>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="index.css" />
-  </head>
-  <body>
-  
-    <div class="js-container"></div>
-    <script src="https://unpkg.com/supersimpledev@8.6.4/external-library.js"></script>
 
-    <script src="https://unpkg.com/supersimpledev/react.js"></script>
-    <script src="https://unpkg.com/supersimpledev/react-dom.js"></script>
-    <script src="https://unpkg.com/react-router-dom/umd/react-router-dom.min.js"></script>
+<head>
 
-    <script src="https://unpkg.com/supersimpledev/babel.js"></script>
-    
-    <script type="text/babel">
-        
-function Header(){
+  <title>Market.in</title>
+
+  <meta charset="UTF-8" />
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  />
+
+  <!-- REACT -->
+
+  <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+  <style>
+
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      font-family:Arial;
+    }
+
+    body{
+      background:#eaeded;
+    }
+
+    a{
+      text-decoration:none;
+      color:black;
+    }
+
+    /* ====================================================== */
+    /* HEADER */
+    /* ====================================================== */
+
+    .header{
+
+      background:#131921;
+
+      color:white;
+
+      display:flex;
+
+      align-items:center;
+
+      justify-content:space-between;
+
+      padding:10px 20px;
+
+      flex-wrap:wrap;
+
+      gap:15px;
+
+    }
+
+    .logo{
+
+      font-size:35px;
+
+      font-weight:bold;
+
+      color:#ff9900;
+
+    }
+
+    .search-container{
+
+      display:flex;
+
+      flex:1;
+
+      max-width:700px;
+
+    }
+
+    .search-container input{
+
+      width:100%;
+
+      padding:12px;
+
+      border:none;
+
+      outline:none;
+
+      font-size:16px;
+
+    }
+
+    .search-container button{
+
+      padding:12px 20px;
+
+      border:none;
+
+      background:#febd69;
+
+      cursor:pointer;
+
+      font-weight:bold;
+
+    }
+
+    .header-links{
+
+      display:flex;
+
+      gap:20px;
+
+      align-items:center;
+
+    }
+
+    .header-links div{
+
+      cursor:pointer;
+
+      font-size:14px;
+
+    }
+
+    .cart{
+
+      font-size:18px;
+
+      font-weight:bold;
+
+    }
+
+    /* ====================================================== */
+    /* MENU */
+    /* ====================================================== */
+
+    .menu{
+
+      background:#232f3e;
+
+      color:white;
+
+      display:flex;
+
+      gap:20px;
+
+      padding:12px 20px;
+
+      overflow-x:auto;
+
+    }
+
+    .menu button{
+
+      background:none;
+
+      border:none;
+
+      color:white;
+
+      cursor:pointer;
+
+      font-size:15px;
+
+      white-space:nowrap;
+
+    }
+
+    .menu button:hover{
+
+      color:#ff9900;
+
+    }
+
+    /* ====================================================== */
+    /* HERO */
+    /* ====================================================== */
+
+    .hero{
+
+      width:100%;
+
+      height:350px;
+
+      background-image:
+      url('https://images.unsplash.com/photo-1519389950473-47ba0277781c');
+
+      background-size:cover;
+
+      background-position:center;
+
+      display:flex;
+
+      align-items:center;
+
+      justify-content:center;
+
+      color:white;
+
+      font-size:45px;
+
+      font-weight:bold;
+
+    }
+
+    /* ====================================================== */
+    /* PRODUCTS */
+    /* ====================================================== */
+
+    .products-container{
+
+      padding:20px;
+
+      display:grid;
+
+      grid-template-columns:
+      repeat(auto-fit,minmax(250px,1fr));
+
+      gap:20px;
+
+    }
+
+    .product-card{
+
+      background:white;
+
+      padding:15px;
+
+      border-radius:10px;
+
+      transition:0.3s;
+
+      box-shadow:
+      0 2px 10px rgba(0,0,0,0.1);
+
+    }
+
+    .product-card:hover{
+
+      transform:translateY(-5px);
+
+    }
+
+    .product-card img{
+
+      width:100%;
+
+      height:250px;
+
+      object-fit:cover;
+
+      border-radius:10px;
+
+    }
+
+    .product-name{
+
+      font-size:22px;
+
+      font-weight:bold;
+
+      margin-top:10px;
+
+    }
+
+    .product-category{
+
+      color:#555;
+
+      margin-top:5px;
+
+    }
+
+    .product-description{
+
+      margin-top:10px;
+
+      color:#444;
+
+      height:50px;
+
+    }
+
+    .product-price{
+
+      color:green;
+
+      font-size:25px;
+
+      font-weight:bold;
+
+      margin-top:10px;
+
+    }
+
+    .buttons{
+
+      display:flex;
+
+      gap:10px;
+
+      margin-top:15px;
+
+    }
+
+    .buttons button{
+
+      flex:1;
+
+      padding:12px;
+
+      border:none;
+
+      cursor:pointer;
+
+      border-radius:5px;
+
+      font-weight:bold;
+
+    }
+
+    .cart-btn{
+
+      background:#ffd814;
+
+    }
+
+    .buy-btn{
+
+      background:#ff9900;
+
+      color:white;
+
+    }
+
+    /* ====================================================== */
+    /* LOADING */
+    /* ====================================================== */
+
+    .loading{
+
+      text-align:center;
+
+      font-size:30px;
+
+      margin-top:50px;
+
+      font-weight:bold;
+
+    }
+
+    /* ====================================================== */
+    /* FOOTER */
+    /* ====================================================== */
+
+    .footer{
+
+      background:#131921;
+
+      color:white;
+
+      text-align:center;
+
+      padding:30px;
+
+      margin-top:40px;
+
+    }
+
+    /* ====================================================== */
+    /* RESPONSIVE */
+    /* ====================================================== */
+
+    @media(max-width:700px){
+
+      .header{
+
+        flex-direction:column;
+
+      }
+
+      .search-container{
+
+        width:100%;
+
+      }
+
+      .hero{
+
+        font-size:30px;
+
+        height:250px;
+
+      }
+
+    }
+
+  </style>
+
+</head>
+
+<body>
+
+<div class="js-container"></div>
+
+<script type="text/babel">
+
+// ======================================================
+// API URL
+// ======================================================
+
+const API_URL =
+  "http://localhost:3000/api/products";
+
+// ======================================================
+// HEADER
+// ======================================================
+
+function Header({
+
+  search,
+  setSearch
+
+}){
+
   return(
-    <div className="vertical-containerheader">
-      <div>Market.in</div>
 
-      <div>
-        <img src="path/to/image.jpg" alt="Logo" />
-        <p>delivering the best products</p>
+    <div className="header">
+
+      <div className="logo">
+
+        Market.in
+
       </div>
 
-      <select className="se">
-        <option>All</option>
-        <option>Electronics</option>
-        <option>Clothing</option>
-        <option>Home</option>
-      </select>
+      <div className="search-container">
 
-      <form>
-        <input type="text" placeholder="Search products..." />
-        <button type="submit">Search</button>
-      </form>
+        <input
 
-      <select className="se">
-        <option>India</option>
-        <option>USA</option>
-      </select>
+          type="text"
 
-      <a href="login/login.html">
-        <button className="se">Login</button>
-      </a>
-      <a href="order/orders.html">
-        <button className="se">Returns & Orders</button>
-      </a>
-      <img src="path/to/cart-icon.jpg" alt="Cart" />
+          placeholder="Search Products..."
+
+          value={search}
+
+          onChange={(e)=>
+            setSearch(e.target.value)
+          }
+
+        />
+
+        <button>
+
+          Search
+
+        </button>
+
+      </div>
+
+      <div className="header-links">
+
+        <div>
+
+          Hello, Sign in
+
+        </div>
+
+        <div>
+
+          Returns & Orders
+
+        </div>
+
+        <div className="cart">
+
+          🛒 Cart
+
+        </div>
+
+      </div>
+
     </div>
+
   );
+
 }
 
-/* ================= OPTION ================= */
-function Option() {
-  const [isOpen, setIsOpen] = React.useState(false);
+// ======================================================
+// MENU
+// ======================================================
 
-  const links = [
-    { name: "MX Player", path: "/mx-player" },
-    { name: "Mobiles", path: "/mobiles" },
-    { name: "Fashion", path: "/fashion" },
-    { name: "Books", path: "/books" },
-    { name: "Home", path: "/home" },
-    { name: "Electronics", path: "/electronics" }
-    
+function Menu({
+
+  setCategory
+
+}){
+
+  const categories = [
+
+    "All",
+
+    "Mobiles",
+
+    "Electronics",
+
+    "Fashion",
+
+    "Home"
+
   ];
 
-  return (
-    <>
-      <div className="vertical-containerheader2">
+  return(
 
-        <button onClick={() => setIsOpen(true)}>All</button>
+    <div className="menu">
 
-        {isOpen && (
-          <div className="overlay" onClick={() => setIsOpen(false)}> </div>
-        )}
+      {
 
-        <div className={`side-menu ${isOpen ? "open" : ""}`}>
-         <div className={`top ${isOpen ? "open" : ""}`}> <button onClick={() => setIsOpen(false)}>X</button> 
-           <h2>hellow {name}</h2> </div>
-            <div className= "side-menu-content">
-              <h3>trending</h3>
-              <a href="bestseller/bestseller.html"><div>best sellers</div></a>
-              <a href="/fashion"><div>new releases</div></a>
-              <a href="/books"><div>mover and shakers</div></a>
-              <h3>digital content and devices</h3>
-              <a href="/mx-player"><div>prime video</div></a>
-              <a href="/mx-player"><div>amazon music</div></a>
-              <a href="/mx-player"><div>app store</div></a>
-              <a href="/mx-player"><div>prime reading</div></a>
-              <h3>shop by category</h3>
-              <a href="/mobiles"><div>mobiles</div></a>
-              <a href="/fashion"><div>fashion</div></a>
-              <a href="/books"><div>books</div></a>
-              <a href="/home"><div>home</div></a>
-              <a href="/home"><div>electronics</div></a>
-              <h3>programs and features</h3>
-              <a href="/mx-player"><div>gift cards</div></a>
-              <a href="/mx-player"><div>amazon pay</div></a>
-              <a href="/mx-player"><div>amazon pay icici credit card</div></a>
-              <a href="/mx-player"><div>sell on market.in</div></a>
-              <h3>help and settings</h3>
-              <a href="account/account.html"><div>your account</div></a>
-              <a href="custoreserves/custoreserves.html"><div>customer service</div></a>
-              <a href= "Login/login.html"><div>log in</div></a>
-              <Footer/>
-            
-            
-          
-            
-           </div>
-         </div>  
-          
-        
-      
+        categories.map((cat,index)=>(
 
-      {/* Top Menu */}
-      <div>
-        {links.map(link => (
           <button
-            key={link.path}
-            onClick={() => window.location.href = link.path} // ✅ changed
+
+            key={index}
+
+            onClick={()=>
+              setCategory(cat)
+            }
+
           >
-            {link.name}
+
+            {cat}
+
           </button>
-        ))}
-      </div>
-      </div>
-    </>
-  );
-}
-/* ================= SHOPCARD ================= */
-function Shopcard({category, image, img2, img3, img4, end, link}){
-  return(
-    <div id="shopcard">
-      <h2>{category}</h2>
-      <img src={image} alt="" />
-      <img src={img2} alt="" />
-      <img src={img3} alt="" />
-      <img src={img4} alt="" />
-      <a href={link}>{end}</a>
+
+        ))
+
+      }
+
     </div>
+
   );
+
 }
 
-/* ================= OPTION2 ================= */
-function Option2(){
+// ======================================================
+// HERO
+// ======================================================
+
+function Hero(){
+
   return(
-    <div className="slider">
-      <div className="vertical-containerimg">
-        <img src="path/to/slider1.jpg" alt="" />
-        <img src="path/to/slider2.jpg" alt="" />
-        <img src="path/to/slider3.jpg" alt="" />
-        <img src="path/to/slider4.jpg" alt="" />
+
+    <div className="hero">
+
+      Welcome To Market.in
+
+    </div>
+
+  );
+
+}
+
+// ======================================================
+// PRODUCT CARD
+// ======================================================
+
+function ProductCard({
+
+  product
+
+}){
+
+  return(
+
+    <div className="product-card">
+
+      <img
+        src={product.image}
+      />
+
+      <div className="product-name">
+
+        {product.name}
+
       </div>
 
-      <div className="vertical-container">
-        <Shopcard category="Mobiles" image="1.jpg" img2="2.jpg" img3="3.jpg" img4="4.jpg" end="See more" link="/mobiles"/>
-        <Shopcard category="Fashion" image="1.jpg" img2="2.jpg" img3="3.jpg" img4="4.jpg" end="See more" link="/fashion"/>
-        <Shopcard category="Home" image="1.jpg" img2="2.jpg" img3="3.jpg" img4="4.jpg" end="See more" link="/home"/>
-      </div>
-    </div>
-  );
-}
+      <div className="product-category">
 
-/* ================= LOGBOARD ================= */
-function Logbord({title, loc1, loc2, loc3, loc4, loc5}){
-  return(
-    <div id="logbord">
-      <h2>{title}</h2>
-      <img src={loc1} />
-      <img src={loc2} />
-      <img src={loc3} />
-      <img src={loc4} />
-      <img src={loc5} />
-    </div>
-  );
-}
+        {product.category}
 
-function Option3(){
-  return(
-    <div id="logbord1">
-      <Logbord title="Section" loc1="1.jpg" loc2="2.jpg" loc3="3.jpg" loc4="4.jpg" loc5="5.jpg"/>
-    </div>
-  );
-}
-
-/* ================= INFO ================= */
-function Info(){
-  return(
-    <>
-      <div style={{ backgroundColor: "black" }}>
-        <button>Back to top</button>
       </div>
 
-      <div className="info">
-        <div className="link">
-          <h2>Get to know us</h2>
-          <a href="#">About</a>
+      <div className="product-description">
+
+        {product.description}
+
+      </div>
+
+      <div className="product-price">
+
+        ₹{product.price}
+
+      </div>
+
+      <div className="buttons">
+
+        <button className="cart-btn">
+
+          Add To Cart
+
+        </button>
+
+        <button className="buy-btn">
+
+          Buy Now
+
+        </button>
+
+      </div>
+
+    </div>
+
+  );
+
+}
+
+// ======================================================
+// PRODUCTS
+// ======================================================
+
+function Products({
+
+  search,
+  category
+
+}){
+
+  const [products,setProducts] =
+    React.useState([]);
+
+  const [loading,setLoading] =
+    React.useState(true);
+
+  // ======================================================
+  // LOAD PRODUCTS FROM MYSQL BACKEND
+  // ======================================================
+
+  async function loadProducts(){
+
+    try{
+
+      const response =
+        await fetch(API_URL);
+
+      const data =
+        await response.json();
+
+      setProducts(data);
+
+      setLoading(false);
+
+    }
+
+    catch(error){
+
+      console.log(error);
+
+      setLoading(false);
+
+    }
+
+  }
+
+  React.useEffect(()=>{
+
+    loadProducts();
+
+  },[]);
+
+  // ======================================================
+  // FILTER PRODUCTS
+  // ======================================================
+
+  const filteredProducts =
+
+    products.filter((product)=>{
+
+      const matchSearch =
+
+        product.name
+        .toLowerCase()
+        .includes(
+          search.toLowerCase()
+        );
+
+      const matchCategory =
+
+        category === "All"
+
+        ||
+
+        product.category === category;
+
+      return (
+        matchSearch &&
+        matchCategory
+      );
+
+    });
+
+  // ======================================================
+  // UI
+  // ======================================================
+
+  return(
+
+    <div className="products-container">
+
+      {
+
+        loading
+
+        ?
+
+        <div className="loading">
+
+          Loading Products...
+
         </div>
 
-        <div className="link">
-          <h2>Connect</h2>
-          <a href="#">Instagram</a>
-        </div>
+        :
 
-        <Link />
-      </div>
-    </>
-  );
-}
+        filteredProducts.map((product)=>(
 
-function Link(){
-  return(
-    <div className="link">
-      <a href="#">Market Pay</a>
-      <a href="#">Audible</a>
-      <a href="#">Gift Cards</a>
+          <ProductCard
+
+            key={product.id}
+
+            product={product}
+
+          />
+
+        ))
+
+      }
+
     </div>
+
   );
+
 }
 
-/* ================= FOOTER ================= */
+// ======================================================
+// FOOTER
+// ======================================================
+
 function Footer(){
+
   return(
-    <div id="footer">
-      © 2026 Market.in
+
+    <div className="footer">
+
+      <h2>
+
+        © 2026 Market.in
+
+      </h2>
+
+      <p>
+
+        Ecommerce Website Using React + MySQL
+
+      </p>
+
     </div>
+
   );
+
 }
 
-/* ================= APP ================= */
-const app = (
-  <>
-    <Header/>
-    <Option/>
-    <Option2/>
-    <Option3/>
-    <Option2/>
-    <Option3/>
+// ======================================================
+// APP
+// ======================================================
 
-    <div className="info-footer">
-      <Info/>
-      
-    </div>
-    <Footer/>
-  </>
+function App(){
+
+  const [search,setSearch] =
+    React.useState("");
+
+  const [category,setCategory] =
+    React.useState("All");
+
+  return(
+
+    <>
+
+      <Header
+
+        search={search}
+
+        setSearch={setSearch}
+
+      />
+
+      <Menu
+
+        setCategory={setCategory}
+
+      />
+
+      <Hero/>
+
+      <Products
+
+        search={search}
+
+        category={category}
+
+      />
+
+      <Footer/>
+
+    </>
+
+  );
+
+}
+
+// ======================================================
+// RENDER
+// ======================================================
+
+const root =
+
+ReactDOM.createRoot(
+  document.querySelector(".js-container")
 );
 
-ReactDOM.createRoot(document.querySelector('.js-container')).render(app);
-      const container = document.querySelector('.js-container');
-      ReactDOM.createRoot(container).render(app);
-    </script>
-  </body>
+root.render(<App/>);
+
+</script>
+
+</body>
+
 </html>
